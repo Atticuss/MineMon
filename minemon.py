@@ -10,7 +10,7 @@ from subprocess import call,Popen
 LOGFILE="/var/log/minemon.log"
 MINERIP="127.0.0.1"
 MINERPORT="4028"
-CGMINERPATH="/home/miner/Downloads/cgminer/miner.sh"
+CGMINERPATH="/home/miner/cgminer/miner.sh"
 logentry=""
 
 def publishlog(resp=None):
