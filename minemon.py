@@ -16,8 +16,9 @@ logentry=""
 def publishlog(resp=None):
         global logentry
         with open(LOGFILE,"w") as lfile:
-                lfile.write("%s %s:%s:%s\n%s\nCurrent Status\n" % (datetime.now().date(),datetime.now().hour,datetime.now().minute,datetime.now().second,logentry))
+                lfile.write("%s %s:%s:%s\n%s\n" % (datetime.now().date(),datetime.now().hour,datetime.now().minute,datetime.now().second,logentry))
                 if resp != None:
+                        lfile.write("Current Status\n")
                         for key in resp['SUMMARY'][0]:
                                 lfile.write('%s: %s\n' % (key,resp['SUMMARY'][0][key]))
 
