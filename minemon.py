@@ -53,14 +53,18 @@ except socket.error as err:
                 raise err
 
 if len(response)<1:
+        api = True
         cmd = subprocess.Popen("ps aux | grep cgminer | grep -v grep",stdout=subprocess.PIPE,shell=True)
         cout, cerr = cmd.communicate()
-        if len(cout.rstrip()) < 1:
+        for line in cout:
+                if 'cgminer -' in line:
+                        log("CGMiner running but API not enabled.")
+                        api = False
+        if api:
                 log("CGMiner not running. Attempting to start.")
                 call("/usr/bin/screen -dm sh %s" % CGMINERPATH,shell=True)
-        else:
-                log("CGMiner running but API not enabled")
         publishlog()
+
 else:
         response=response.replace('\x00','')
         response=json.loads(response)
