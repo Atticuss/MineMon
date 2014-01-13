@@ -55,7 +55,7 @@ except socket.error as err:
 if len(response)<1:
         cmd = subprocess.Popen("ps aux | grep cgminer | grep -v grep",stdout=subprocess.PIPE,shell=True)
         cout, cerr = cmd.communicate()
-        if len(cout.rstrip()) == 0:
+        if len(cout.rstrip()) < 1:
                 log("CGMiner not running. Attempting to start.")
                 call("/usr/bin/screen -dm sh %s" % CGMINERPATH,shell=True)
         else:
