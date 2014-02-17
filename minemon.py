@@ -7,7 +7,7 @@ import subprocess
 from datetime import datetime
 from subprocess import call,Popen
 
-LOGFILE="/var/log/minemon.log"
+LOGFILE="/home/miner/cgminer/minemon.log"
 MINERIP="127.0.0.1"
 MINERPORT="4028"
 CGMINERPATH="/home/miner/cgminer/miner.sh"
@@ -75,8 +75,7 @@ else:
                         if 'Total MH' in line:
                                 ptmh = line[10:].rstrip()
         if ptmh != None and ptmh == ctmh:
-                log("CGMiner frozen. Restarting mining rig.")
-                call("/sbin/reboot",shell=True)
+                log("CGMiner frozen...")
         else:
                 log("CGMiner currently running.")
         publishlog(response)
